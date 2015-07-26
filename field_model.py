@@ -147,6 +147,7 @@ class FTableModel(QtCore.QAbstractTableModel):
         thread.started.connect(fly.run)
         fly.died.connect(thread.quit)
         thread.finished.connect(thread.deleteLater)
+        thread.finished.connect(self.clearDeadThreads)
         self.killAll.connect(fly.die)
         fly.moved.connect(self.moveFly)
         fly.died.connect(self.resetInternalData)
@@ -170,3 +171,7 @@ class FTableModel(QtCore.QAbstractTableModel):
         self.beginResetModel()
         self.endResetModel()
 
+    def clearDeadThreads(self):
+        for thread in self._threads:
+            if thread.isFinished():
+                self._threads.remove(thread)
