@@ -49,11 +49,11 @@ class FTableModel(QtCore.QAbstractTableModel):
                         row_amount = math.ceil(amount**0.5)
                         edge_size = SIZE/row_amount
                         if fly.isAlive():
-                            pixmap = QtGui.QPixmap('fly1.jpg').scaled(QtCore.QSize(edge_size, edge_size),
+                            pixmap = QtGui.QPixmap('img/fly1.jpg').scaled(QtCore.QSize(edge_size, edge_size),
                                                                       QtCore.Qt.KeepAspectRatio,
                                                                       QtCore.Qt.SmoothTransformation)
                         else:
-                            pixmap = QtGui.QPixmap('dead_bug.jpg').scaled(QtCore.QSize(edge_size, edge_size),
+                            pixmap = QtGui.QPixmap('img/dead_bug.jpg').scaled(QtCore.QSize(edge_size, edge_size),
                                                                           QtCore.Qt.KeepAspectRatio,
                                                                           QtCore.Qt.SmoothTransformation)
                         painter.drawPixmap(x, y, pixmap)
