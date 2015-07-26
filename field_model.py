@@ -175,3 +175,19 @@ class FTableModel(QtCore.QAbstractTableModel):
         for thread in self._threads:
             if thread.isFinished():
                 self._threads.remove(thread)
+
+    def getReport(self):
+        report = '<ul>'
+        for row, rowValues in enumerate(self._values):
+            for col, cellValues in enumerate(rowValues):
+                if cellValues:
+                    report += '<li>{0}-{1}</li>'.format(row+1, col+1)
+                    report += '<ul>'
+                    for index, fly in enumerate(cellValues):
+                        report += '<li>Муха {0}: время жизни - {1}c, пройденное расстояние - {2} шага'.format(index+1,
+                                                                                                        fly.age(),
+                                                                                                        fly.distance())
+
+                    report += '</ul>'
+        report += '</ul>'
+        return report

@@ -60,6 +60,9 @@ class Fly(QtCore.QObject):
     # Вопросы жизни и смерти
     def die(self):
         self._isDead = True
+        now = datetime.datetime.now()
+        if now < self.deathTime:
+            self.deathTime = now
 
     def isAlive(self):
         """Проверяем, что муха до сих пор жива
@@ -69,3 +72,12 @@ class Fly(QtCore.QObject):
         if not self._isDead:
             self._isDead = datetime.datetime.now() > self.deathTime
         return not self._isDead
+
+    def age(self):
+        if self.isAlive():
+            return (datetime.datetime.now() - self.birthTime).seconds
+        else:
+            return (self.deathTime - self.birthTime).seconds
+
+    def distance(self):
+        return self.steps

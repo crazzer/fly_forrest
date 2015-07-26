@@ -46,6 +46,7 @@ class FDialog(QtWidgets.QDialog):
 
     def on_btnStop_clicked(self, index):
         self.fieldModel.killAll.emit()
+        self.edtReport.setText(self.fieldModel.getReport())
 
     def setupUi(self):
         layout = QtWidgets.QHBoxLayout()
@@ -71,11 +72,13 @@ class FDialog(QtWidgets.QDialog):
         self.btnStop = QtWidgets.QPushButton()
         settingsLayout.addWidget(self.btnStop, 3, 0, 1, -1)
 
+        self.edtReport = QtWidgets.QTextBrowser()
+        settingsLayout.addWidget(self.edtReport, 4, 0, -1, -1)
         spacerLayout = QtWidgets.QHBoxLayout()
         spacerLayout.addSpacerItem(QtWidgets.QSpacerItem(40, 20,
                                                          QtWidgets.QSizePolicy.Minimum,
                                                          QtWidgets.QSizePolicy.Expanding))
-        settingsLayout.addLayout(spacerLayout, 4, 0)
+        settingsLayout.addLayout(spacerLayout, 5, 0)
 
         layout.addLayout(settingsLayout)
 
